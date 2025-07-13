@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Homepage</title>
+  </head>
+  <body>
+    <div class="main">
+      <% if (user) {%>
+      <h1>Welcome back <%= user.first_name %> <%= user.last_name %></h1>
+      <div class="links-container">
+        <a href="/messages/add"> Create a new message</a>
+        <a href="/logout">Log out</a>
+      </div>
+      <% } else { %>
+      <h1>Welcome to our club!</h1>
+      <div class="links-container">
+        <p><a href="/sign-up"> Sign up </a> right now!</p>
+        <p>Already registred? <a href="/login"> Login </a></p>
+      </div>
+      <% } %>
+    </div>
+  </body>
+</html>

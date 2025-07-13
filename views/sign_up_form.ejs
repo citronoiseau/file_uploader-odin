@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <title>Sign-up</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1> Sign-up </h1>
+    <%- include("partials/errors.ejs") %>
+   <form action="/sign-up" method="POST" class="register-form">
+    <div class="input-form"> 
+        <label for="first_name">First Name: </label>
+        <input type="text" name="first_name" id="firstName" required>
+    </div>
+    <div class="input-form"> 
+        <label for="last_name">Last Name: </label>
+        <input type="text" name="last_name" id="last_name" required>
+    </div>
+
+    <div class="input-form"> 
+      <label for="username">Username: </label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        required
+        pattern="^[a-zA-Z0-9_]{3,20}$"
+        title="Username must be 3–20 characters long and contain only letters, numbers, and underscores"
+      >
+    </div>
+
+<div class="input-form"> 
+  <label for="password">Password: </label>
+   <div class="input-icon-container">
+  <input
+    type="password"
+    name="password"
+    id="password"
+    required
+    minlength="3"
+    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{3,}$"
+    title="Password must be at least 3 characters and contain at least one letter and one number"
+  >
+  <span class="toggle-password" onclick="togglePassword('password', this)">🙉</span>
+  </div>
+</div>
+
+<div class="input-form"> 
+  <label for="passwordConfirmation">Confirm Password: </label>
+  <div class="input-icon-container">
+  <input
+    type="password"
+    name="passwordConfirmation"
+    id="passwordConfirmation"
+    required
+    oninput="checkPasswordMatch()"
+  >
+   <span class="toggle-password" onclick="togglePassword('passwordConfirmation', this)">🙉</span>
+   </div>
+</div>
+
+  <div>
+    <input
+      type="checkbox"
+      id="isAdmin"
+      name="isAdmin"
+      value="admin" />
+    <label for="isAdmin">Do you want to be admin?</label>
+  </div>
+    <p id="passwordError" style="color: red; display: none;">Passwords do not match.</p>
+    <button type="submit">Register</button>
+  </form>
+   <div class="links-container"> 
+  <p> Already registred? <a href="/login"> Login </a> </p> 
+  <a href="/">Homepage</a>
+   </div> 
+</html>
+
+<script>
+  function togglePassword(fieldId, icon) {
+    const input = document.getElementById(fieldId);
+    if (input.type === "password") {
+      input.type = "text";
+      icon.textContent = "🙈"; 
+    } else {
+      input.type = "password";
+      icon.textContent = "🙉"; 
+    }
+  }
+
+  function checkPasswordMatch() {
+    const password = document.getElementById('password').value;
+    const confirm = document.getElementById('passwordConfirmation').value;
+    const error = document.getElementById('passwordError');
+    if (confirm && password !== confirm) {
+      error.style.display = 'block';
+    } else {
+      error.style.display = 'none';
+    }
+  }
+</script>

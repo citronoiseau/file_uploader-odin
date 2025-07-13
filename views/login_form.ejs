@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sign-up</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <h1> Login </h1>
+   <form action="/login" method="POST" class="register-form">
+    
+<div class="input-form"> 
+  <label for="username">Username: </label>
+  <input
+    type="text"
+    name="username"
+    id="username"
+    required
+    pattern="^[a-zA-Z0-9_]{3,20}$"
+    title="Username must be 3–20 characters long and contain only letters, numbers, and underscores"
+  >
+</div>
+
+<div class="input-form"> 
+  <label for="password">Password: </label>
+  <div class="input-icon-container">
+  <input
+    type="password"
+    name="password"
+    id="password"
+    required
+    minlength="3"
+  >
+  <span class="toggle-password" onclick="togglePassword('password', this)">🙉</span>
+  </div>
+  </div>
+    
+    <button type="submit">Login</button>
+  </form>
+  <a href="/">Homepage</a>
+</html>
+
+<script>
+  function togglePassword(fieldId, icon) {
+    const input = document.getElementById(fieldId);
+    if (input.type === "password") {
+      input.type = "text";
+      icon.textContent = "🙈"; 
+    } else {
+      input.type = "password";
+      icon.textContent = "🙉"; 
+    }
+  }
+</script>
