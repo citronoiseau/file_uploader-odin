@@ -2,8 +2,9 @@ const path = require("node:path");
 const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
+const flash = require("connect-flash");
 const indexRouter = require("./routes/indexRouter");
-const prisma = require("../../prisma/client");
+const prisma = require("./prisma/client");
 const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 require("dotenv").config();
 require("./controllers/passport");
@@ -29,8 +30,20 @@ app.use(
     },
   })
 );
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(passport.session());
+
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.errors = req.flash("error");
+  next();
+});
+
+app.use((req, res, next) => {
+  console.log(req.session);
+  console.log(req.user);
+  next();
+});
 
 app.use((req, res, next) => {
   res.locals.user = req.user;
