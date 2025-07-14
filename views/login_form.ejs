@@ -1,22 +1,21 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Sign-up</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <h1> Login </h1>
+    <%- include("partials/flash_errors.ejs") %>
    <form action="/login" method="POST" class="register-form">
     
 <div class="input-form"> 
-  <label for="username">Username: </label>
+  <label for="uemail">Email: </label>
   <input
-    type="text"
-    name="username"
-    id="username"
+    type="email"
+    name="email"
+    id="email"
     required
-    pattern="^[a-zA-Z0-9_]{3,20}$"
-    title="Username must be 3–20 characters long and contain only letters, numbers, and underscores"
   >
 </div>
 

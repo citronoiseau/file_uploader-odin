@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const passport = require("passport");
 const indexRouter = Router();
+const { signUp } = require("../controllers/usersController");
 
 indexRouter.get("/", (req, res, next) => {
   res.render("index");
@@ -15,6 +16,7 @@ indexRouter.post(
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
+    failureFlash: true,
   })
 );
 

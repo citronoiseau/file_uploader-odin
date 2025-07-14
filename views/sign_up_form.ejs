@@ -7,24 +7,14 @@
     <h1> Sign-up </h1>
     <%- include("partials/errors.ejs") %>
    <form action="/sign-up" method="POST" class="register-form">
-    <div class="input-form"> 
-        <label for="first_name">First Name: </label>
-        <input type="text" name="first_name" id="firstName" required>
-    </div>
-    <div class="input-form"> 
-        <label for="last_name">Last Name: </label>
-        <input type="text" name="last_name" id="last_name" required>
-    </div>
 
     <div class="input-form"> 
-      <label for="username">Username: </label>
+      <label for="email">Email: </label>
       <input
         type="text"
-        name="username"
-        id="username"
+        name="email"
+        id="email"
         required
-        pattern="^[a-zA-Z0-9_]{3,20}$"
-        title="Username must be 3–20 characters long and contain only letters, numbers, and underscores"
       >
     </div>
 
@@ -58,14 +48,6 @@
    </div>
 </div>
 
-  <div>
-    <input
-      type="checkbox"
-      id="isAdmin"
-      name="isAdmin"
-      value="admin" />
-    <label for="isAdmin">Do you want to be admin?</label>
-  </div>
     <p id="passwordError" style="color: red; display: none;">Passwords do not match.</p>
     <button type="submit">Register</button>
   </form>
