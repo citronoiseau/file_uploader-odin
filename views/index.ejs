@@ -7,17 +7,22 @@
   </head>
   <body>
     <div class="main">
-      <% if (user) {%>
-      <h1>Welcome back <%= user.email%></h1>
+      <% if (user) { %>
+      <h1>Welcome back <%= user.email %></h1>
       <div class="links-container">
-        <a href="/messages/add"> Add a new file </a>
+        <% if (folders && folders.length > 0) { %> <% folders.forEach(folder =>
+        { %> <%- include('partials/folder', { folder: folder, user: user }) %>
+        <% }) %> <% } else { %>
+        <p>You have no folders yet.</p>
+        <a href="/folders/add">Add a new folder</a>
+        <% } %>
         <a href="/logout">Log out</a>
       </div>
       <% } else { %>
-      <h1>Googol Walk!</h1>
+      <h1>Googol Walk</h1>
       <div class="links-container">
-        <p><a href="/sign-up"> Sign up </a> right now!</p>
-        <p>Already registred? <a href="/login"> Login </a></p>
+        <p><a href="/sign-up">Sign up</a> right now!</p>
+        <p>Already registered? <a href="/login">Login</a></p>
       </div>
       <% } %>
     </div>

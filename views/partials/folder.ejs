@@ -1,0 +1,39 @@
+<div class="folder">
+  <div class="folder-info">
+    <h2><%= folder.name %></h2>
+    <% if (folder.File && folder.File.length > 0) { %>
+    <ul>
+      <% folder.File.forEach(file => { %>
+      <li>
+        <%= file.name %> - <%= file.size %> - <%= new
+        Date(file.uploadTime).toLocaleString() %>
+        <a href="/folders/<%= folder.id %>/<%= file.id %>/delete"
+          >Delete file</a
+        >
+      </li>
+      <% }) %>
+    </ul>
+    <% } else { %>
+    <p>No files in this folder.</p>
+    <% } %>
+    <a href="/folders/<%= folder.id %>/file/add">Add a new file</a>
+  </div>
+  <div class="folder-controls">
+    <button
+      class="edit-folder"
+      data-folder-id="<%= folder.id %>"
+      data-folder-name="<%= folder.name %>"
+    >
+      Edit folder
+    </button>
+    <form
+      action="/folders/<%= folder.id %>/delete"
+      method="POST"
+      onsubmit="return confirm('Delete this folder? ALL FILES WILL BE DELETED')"
+    >
+      <button class="icon-btn" type="submit" title="Delete" aria-label="Delete">
+        🗑️
+      </button>
+    </form>
+  </div>
+</div>
