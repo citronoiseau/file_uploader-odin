@@ -37,7 +37,7 @@ model Folder {
 
 model File {
   id         Int      @id @default(autoincrement())
-  Folder     Folder   @relation(fields: [folderId], references: [id])
+  Folder     Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
   folderId   Int
   name       String   @db.VarChar(255)
   url        String
