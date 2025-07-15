@@ -1,0 +1,43 @@
+<dialog id="create-folder-dialog">
+  <form action="/folders/create" id="create-form" method="POST">
+    <h2>Create a new folder</h2>
+    <div class="input-form">
+      <label for="name">Name: </label>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        minlength="2"
+        maxlength="30"
+        required
+      />
+    </div>
+
+    <div class="dialog-buttons">
+      <button type="button" class="cancel-button" id="cancel-create-button">
+        Cancel
+      </button>
+      <button type="submit" class="create-button">Create</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  const createDialog = document.getElementById("create-folder-dialog");
+  const closeCreateBtn = createDialog.querySelector("#cancel-create-button");
+  const createFolderBtn = document.querySelector("#create-folder-button");
+  if (createFolderBtn) {
+    createFolderBtn.addEventListener("click", () => {
+      const form = createDialog.querySelector("#create-form");
+      form.action = `/folders/create`;
+      createDialog.showModal();
+    });
+  }
+  closeCreateBtn.addEventListener("click", () => {
+    closeCreateBtn.close();
+  });
+
+  createDialog.addEventListener("cancel", () => {
+    createDialog.close();
+  });
+</script>

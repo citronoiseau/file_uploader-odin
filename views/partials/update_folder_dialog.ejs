@@ -1,0 +1,42 @@
+<dialog id="edit-folder-dialog">
+  <form method="POST" id="edit-form" class="modal-form">
+    <h2>Confirm Edit</h2>
+    <div class="form-input">
+      <label for="name">Name: </label>
+      <input type="text" id="folderName" name="name" required />
+    </div>
+    <div class="dialog-buttons">
+      <button type="button" class="cancel-button" id="cancel-edit-button">
+        Cancel
+      </button>
+      <button type="submit" class="confirm-button">Continue</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  const editDialog = document.getElementById("edit-folder-dialog");
+  const closeButton = editDialog.querySelector("#cancel-edit-button");
+
+  document.querySelectorAll(".edit-folder-button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const folderId = btn.dataset.folderId;
+      const folderName = btn.dataset.folderName;
+
+      const form = editDialog.querySelector("#edit-form");
+      form.action = `/folders/${folderId}/update`;
+
+      editDialog.querySelector("h2").textContent = `Edit: ${folderName}`;
+      editDialog.querySelector("#folderName").value = folderName;
+      editDialog.showModal();
+    });
+  });
+
+  closeButton.addEventListener("click", () => {
+    editDialog.close();
+  });
+
+  editDialog.addEventListener("cancel", () => {
+    editDialog.close();
+  });
+</script>
