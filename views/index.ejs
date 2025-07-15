@@ -9,13 +9,15 @@
     <div class="main">
       <% if (user) { %>
       <h1>Welcome back <%= user.email %></h1>
-      <div class="links-container">
+      <div class="folder-container">
         <% if (folders && folders.length > 0) { %> <% folders.forEach(folder =>
         { %> <%- include('partials/folder', { folder: folder, user: user }) %>
         <% }) %> <% } else { %>
         <p>You have no folders yet.</p>
-        <a href="/folders/add">Add a new folder</a>
         <% } %>
+      </div>
+      <div class="navigation-container">
+        <button id="create-folder-button">Add a new folder</button>
         <a href="/logout">Log out</a>
       </div>
       <% } else { %>
@@ -26,5 +28,7 @@
       </div>
       <% } %>
     </div>
+    <%- include('partials/update_folder_dialog.ejs') %> <%-
+    include('partials/create_folder_dialog.ejs') %>
   </body>
 </html>
