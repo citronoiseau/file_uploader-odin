@@ -1,16 +1,25 @@
 const { Router } = require("express");
 const passport = require("passport");
-const indexRouter = Router();
-const { signUp } = require("../controllers/usersController");
+const UserController = require("../controllers/userController");
+const { getFolders } = require("../prisma/services/folder.service");
 
-indexRouter.get("/", (req, res, next) => {
+const indexRouter = Router();
+
+indexRouter.get("/", async (req, res) => {
+  if (req.isAuthenticated()) {
+    const folders = await UserController.getFolders(req.user.id);
+    return res.render("index", {
+      user: req.user,
+      folders,
+    });
+  }
+
   res.render("index");
 });
 
 indexRouter.get("/login", (req, res, next) => {
   res.render("login_form");
 });
-
 indexRouter.post(
   "/login",
   passport.authenticate("local", {
@@ -20,7 +29,7 @@ indexRouter.post(
   })
 );
 
-indexRouter.post("/sign-up", signUp);
+indexRouter.post("/sign-up", UserController.signUp);
 indexRouter.get("/sign-up", (req, res, next) => {
   res.render("sign_up_form");
 });
