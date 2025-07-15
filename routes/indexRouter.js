@@ -7,7 +7,7 @@ const indexRouter = Router();
 
 indexRouter.get("/", async (req, res) => {
   if (req.isAuthenticated()) {
-    const folders = await UserController.getFolders(req.user.id);
+    const folders = await getFolders(req.user.id);
     return res.render("index", {
       user: req.user,
       folders,

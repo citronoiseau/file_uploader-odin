@@ -4,6 +4,7 @@ const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
 const indexRouter = require("./routes/indexRouter");
+const folderRouter = require("./routes/folderRouter");
 const prisma = require("./prisma/client");
 const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 require("dotenv").config();
@@ -51,6 +52,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", indexRouter);
+app.use("/folders", folderRouter);
 
 const PORT = process.env.PORT || 3000;
 
