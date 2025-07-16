@@ -2,6 +2,7 @@ const { Router } = require("express");
 const passport = require("passport");
 const UserController = require("../controllers/userController");
 const { getFolders } = require("../prisma/services/folder.service");
+const formatSize = require("../utils/formatSize");
 
 const indexRouter = Router();
 
@@ -11,6 +12,7 @@ indexRouter.get("/", async (req, res) => {
     return res.render("index", {
       user: req.user,
       folders,
+      formatSize,
     });
   }
 
