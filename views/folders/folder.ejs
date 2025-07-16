@@ -3,27 +3,8 @@
     <h2><%= folder.name %></h2>
     <% if (folder.File && folder.File.length > 0) { %>
     <ul>
-      <% folder.File.forEach(file => { %>
-      <li>
-        <%= file.name %> - <%= formatSize(file.size) %> - <%= new
-        Date(file.uploadTime).toLocaleString() %>
-
-        <form
-          action="/folders/<%= folder.id %>/<%= file.id %>/delete"
-          method="POST"
-          onsubmit="return confirm('Delete this file?')"
-        >
-          <button
-            class="icon-btn"
-            type="submit"
-            title="Delete"
-            aria-label="Delete"
-          >
-            🗑️
-          </button>
-        </form>
-      </li>
-      <% }) %>
+      <% folder.File.forEach(file => { %> <%- include('file', { file: file,
+      folder: folder, formatSize: formatSize }) %> <% }) %>
     </ul>
     <% } else { %>
     <p>No files in this folder.</p>
