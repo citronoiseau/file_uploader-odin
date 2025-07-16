@@ -11,8 +11,8 @@
       <h1>Welcome back <%= user.email %></h1>
       <div class="folder-container">
         <% if (folders && folders.length > 0) { %> <% folders.forEach(folder =>
-        { %> <%- include('partials/folder', { folder: folder, user: user }) %>
-        <% }) %> <% } else { %>
+        { %> <%- include('folders/folder', { folder: folder, user: user }) %> <%
+        }) %> <% } else { %>
         <p>You have no folders yet.</p>
         <% } %>
       </div>
@@ -28,7 +28,8 @@
       </div>
       <% } %>
     </div>
-    <%- include('partials/update_folder_dialog.ejs') %> <%-
-    include('partials/create_folder_dialog.ejs') %>
+    <%- include('folders/update_folder_dialog.ejs') %> <%-
+    include('folders/create_folder_dialog.ejs') %> <%-
+    include('folders/upload_file_dialog.ejs') %>
   </body>
 </html>
