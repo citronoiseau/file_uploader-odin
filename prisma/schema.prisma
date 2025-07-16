@@ -41,6 +41,6 @@ model File {
   folderId   Int
   name       String   @db.VarChar(255)
   url        String
-  size       Float
+  size       Int
   uploadTime DateTime @default(now())
 }
