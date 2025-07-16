@@ -14,6 +14,11 @@ class FolderService {
     });
   }
 
+  async getFilesByFolderId(folderId) {
+    return await prisma.file.findMany({
+      where: { folderId: Number(folderId) },
+    });
+  }
   async addFolder(name, userId) {
     return await prisma.folder.create({
       data: {
@@ -33,25 +38,6 @@ class FolderService {
     return await prisma.folder.update({
       where: { id: Number(id) },
       data: { name: newName },
-    });
-  }
-
-  async addNewFile(folderId, fileName, fileUrl, fileSize) {
-    return await prisma.file.create({
-      data: {
-        name: fileName,
-        url: fileUrl,
-        size: fileSize,
-        Folder: {
-          connect: { id: Number(folderId) },
-        },
-      },
-    });
-  }
-
-  async deleteFile(fileId) {
-    return await prisma.file.delete({
-      where: { id: Number(fileId) },
     });
   }
 }
