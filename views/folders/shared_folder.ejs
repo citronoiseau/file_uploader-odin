@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Shared Folder</title>
+  </head>
+  <body>
+    <div class="main">
+      <h1>Googol Walk</h1>
+      <div class="folder-container">
+        <% if (folder) { %>
+        <div class="folder">
+          <div class="folder-info">
+            <h2><%= folder.name %></h2>
+
+            <% if (folder.File && folder.File.length > 0) { %>
+            <ul>
+              <% folder.File.forEach(file => { %> <%- include('../files/file', {
+              file: file, folder: folder, formatSize: formatSize }) %> <% }) %>
+            </ul>
+            <% } else { %>
+            <p>No files in this folder.</p>
+            <% } %> <% } %>
+          </div>
+        </div>
+      </div>
+
+      <div class="links-container">
+        <% if (!user) { %>
+        <p>Do you want to join our community!</p>
+        <p><a href="/sign-up">Sign up</a> right now!</p>
+        <p>Already registered? <a href="/login">Login</a></p>
+        <% } %>
+        <a href="/">Homepage</a>
+      </div>
+    </div>
+  </body>
+</html>
