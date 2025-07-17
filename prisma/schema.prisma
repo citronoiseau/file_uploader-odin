@@ -28,11 +28,12 @@ model User {
 }
 
 model Folder {
-  id     Int    @id @default(autoincrement())
-  user   User   @relation(fields: [userId], references: [id])
-  userId Int
-  File   File[]
-  name   String @db.VarChar(255)
+  id        Int         @id @default(autoincrement())
+  user      User        @relation(fields: [userId], references: [id])
+  userId    Int
+  File      File[]
+  name      String      @db.VarChar(255)
+  ShareLink ShareLink[]
 }
 
 model File {
@@ -45,4 +46,12 @@ model File {
   uploadTime    DateTime @default(now())
   publicId      String
   resource_type String
+}
+
+model ShareLink {
+  id        String   @id @default(uuid())
+  folderId  Int
+  Folder    Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 }
