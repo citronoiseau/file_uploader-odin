@@ -12,6 +12,8 @@ folderRouter.post("/:id/delete", isAuth, FolderController.deleteFolder);
 
 folderRouter.post("/:id/update", isAuth, FolderController.updateFolder);
 
+folderRouter.post("/:id/share", isAuth, FolderController.shareFolder);
+
 folderRouter.post(
   "/:id/upload",
   isAuth,

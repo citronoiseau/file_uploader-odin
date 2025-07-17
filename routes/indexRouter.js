@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const passport = require("passport");
 const UserController = require("../controllers/userController");
+const FolderController = require("../controllers/folderController");
 const { getFolders } = require("../prisma/services/folder.service");
 const formatSize = require("../utils/formatSize");
 
@@ -44,5 +45,7 @@ indexRouter.get("/logout", (req, res, next) => {
     res.redirect("/");
   });
 });
+
+indexRouter.get("/share/:token", FolderController.getSharedFolder);
 
 module.exports = indexRouter;

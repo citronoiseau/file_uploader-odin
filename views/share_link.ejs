@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shareable link</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="main">
+      <h2>Folder Shared Successfully!</h2>
+      <p>Here is your shareable link:</p>
+      <a href="<%= url %>" target="_blank"><%= url %></a>
+      <p id="copy-msg" style="color: green; display: none">
+        Copied to clipboard!
+      </p>
+      <a href="/">Homepage</a>
+    </div>
+  </body>
+</html>
+
+<script>
+  const link = document.getElementById("share-link");
+  const msg = document.getElementById("copy-msg");
+
+  link.addEventListener("click", function (e) {
+    e.preventDefault(); // prevent navigation
+
+    const text = link.href;
+
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        msg.style.display = "inline";
+        setTimeout(() => {
+          msg.style.display = "none";
+          window.open(text, "_blank");
+        }, 1000);
+      })
+      .catch((err) => {
+        console.error("Failed to copy link:", err);
+      });
+  });
+</script>

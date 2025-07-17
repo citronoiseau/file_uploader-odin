@@ -40,6 +40,22 @@ class FolderService {
       data: { name: newName },
     });
   }
+
+  async shareFolder(id, expiresAt) {
+    return await prisma.shareLink.create({
+      data: {
+        folderId: Number(id),
+        expiresAt: expiresAt,
+      },
+    });
+  }
+
+  async getSharedFolderById(id) {
+    return await prisma.shareLink.findUnique({
+      where: { id: id },
+      include: { Folder: { include: { File: true } } },
+    });
+  }
 }
 
 module.exports = new FolderService();
