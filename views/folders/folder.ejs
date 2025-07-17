@@ -3,8 +3,8 @@
     <h2><%= folder.name %></h2>
     <% if (folder.File && folder.File.length > 0) { %>
     <ul>
-      <% folder.File.forEach(file => { %> <%- include('file', { file: file,
-      folder: folder, formatSize: formatSize }) %> <% }) %>
+      <% folder.File.forEach(file => { %> <%- include('../files/file', { file:
+      file, folder: folder, formatSize: formatSize }) %> <% }) %>
     </ul>
     <% } else { %>
     <p>No files in this folder.</p>
@@ -14,6 +14,13 @@
     </button>
   </div>
   <div class="folder-controls">
+    <button
+      class="share-folder-button"
+      data-folder-id="<%= folder.id %>"
+      data-folder-name="<%= folder.name %>"
+    >
+      ✉️
+    </button>
     <button
       class="edit-folder-button"
       data-folder-id="<%= folder.id %>"
