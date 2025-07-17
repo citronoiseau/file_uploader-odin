@@ -18,7 +18,7 @@
       </div>
       <div class="navigation-container">
         <button id="create-folder-button">Add a new folder</button>
-        <a href="/logout">Log out</a>
+        <a class="logout-link" href="/logout">Log out</a>
       </div>
       <% } else { %>
       <h1>Googol Walk</h1>
@@ -30,6 +30,7 @@
     </div>
     <%- include('folders/update_folder_dialog.ejs') %> <%-
     include('folders/create_folder_dialog.ejs') %> <%-
-    include('folders/upload_file_dialog.ejs') %>
+    include('files/upload_file_dialog.ejs') %> <%-
+    include('folders/share_folder_dialog.ejs') %>
   </body>
 </html>
