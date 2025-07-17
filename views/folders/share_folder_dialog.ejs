@@ -1,0 +1,47 @@
+<dialog id="share-folder-dialog">
+  <form method="POST" id="share-form" class="modal-form">
+    <h2>Confirm Share</h2>
+    <div class="input-form">
+      <label for="duration">Share for (in days):</label>
+      <input
+        type="number"
+        name="duration"
+        id="share_duration"
+        min="1"
+        max="30"
+        required
+      />
+    </div>
+    <div class="dialog-buttons">
+      <button type="button" class="cancel-button" id="cancel-share-button">
+        Cancel
+      </button>
+      <button type="submit" class="confirm-button">Generate link</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  const shareDialog = document.getElementById("share-folder-dialog");
+  const closeShareButton = shareDialog.querySelector("#cancel-share-button");
+
+  document.querySelectorAll(".share-folder-button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const folderId = btn.dataset.folderId;
+      const folderName = btn.dataset.folderName;
+
+      const form = shareDialog.querySelector("#share-form");
+      form.action = `/folders/${folderId}/share`;
+
+      shareDialog.showModal();
+    });
+  });
+
+  closeShareButton.addEventListener("click", () => {
+    shareDialog.close();
+  });
+
+  shareDialog.addEventListener("cancel", () => {
+    shareDialog.close();
+  });
+</script>
